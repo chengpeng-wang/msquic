@@ -284,7 +284,7 @@ private:
         if (Event->Type == QUIC_LISTENER_EVENT_NEW_CONNECTION) {
             if (Event->NEW_CONNECTION.Info->NegotiatedAlpnLength >= 6 &&
                 !memcmp(Event->NEW_CONNECTION.Info->NegotiatedAlpn, "siduck", 6)) {
-                new DatagramConnection(Event->NEW_CONNECTION.Connection);
+                new DatagramConnection(Event->NEW_CONNECTION.Connection);  //TODO: leak
             } else {
                 HttpConnection* HttpConn = new HttpConnection(Event->NEW_CONNECTION.Connection);
                 if (This->SslKeyLogFile != nullptr) {
