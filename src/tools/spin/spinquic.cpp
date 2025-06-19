@@ -537,6 +537,7 @@ QUIC_STATUS QUIC_API SpinQuicServerHandleListenerEvent(HQUIC /* Listener */, voi
         if (ctx == nullptr) {
             return QUIC_STATUS_OUT_OF_MEMORY;
         }
+        
         {
             std::lock_guard<std::mutex> Lock(Connections);
             Connections.push_back(Event->NEW_CONNECTION.Connection);
@@ -1498,6 +1499,15 @@ CXPLAT_THREAD_CALLBACK(RunThread, Context)
         }
 
     } while (false);
+
+    if (Gb.Alpns) {
+        for (uint32_t j = 0; j < Gb.AlpnCount; j++) {
+            if (Gb.Alpns[j].Buffer) {
+                free(Gb.Alpns[j].Buffer);
+            }
+        }
+        free(Gb.Alpns);
+    }
 
     CXPLAT_THREAD_RETURN(0);
 }
