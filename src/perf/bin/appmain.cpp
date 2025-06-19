@@ -83,8 +83,11 @@ QuicHandleExtraData(
             for (size_t i = 0; i < MaxCount; i++) {
                 hdr_record_value(histogram, ((uint32_t*)ExtraData)[i]);
             }
-            hdr_percentiles_print(histogram, FilePtr, 5, 1.0, CLASSIC);
-            hdr_close(histogram);
+
+            if (histogram) {
+                hdr_percentiles_print(histogram, FilePtr, 5, 1.0, CLASSIC);
+                hdr_close(histogram);
+            }
         }
         fclose(FilePtr);
     }
