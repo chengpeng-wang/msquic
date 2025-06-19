@@ -530,7 +530,9 @@ void WriteCryptoFrame(
 {
     if (PacketParams->Mode == 0) {
         if (ClientContext == nullptr) {
-            ClientContext = new TlsContext();
+            //TODO: Memory leak. 
+            //Fix plan: change _In_ TlsContext* ClientContext to _In_ TlsContext** ClientContext
+            ClientContext = new TlsContext();   
             ClientContext->CreateContext(PacketParams->SourceCid);
             auto Result = ClientContext->ProcessData();
             CXPLAT_FRE_ASSERT(Result & CXPLAT_TLS_RESULT_DATA);
