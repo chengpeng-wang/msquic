@@ -286,7 +286,7 @@ private:
                 !memcmp(Event->NEW_CONNECTION.Info->NegotiatedAlpn, "siduck", 6)) {
                 new DatagramConnection(Event->NEW_CONNECTION.Connection);
             } else {
-                HttpConnection* HttpConn = new HttpConnection(Event->NEW_CONNECTION.Connection);
+                HttpConnection* HttpConn = new HttpConnection(Event->NEW_CONNECTION.Connection);  //TODO: leak
                 if (This->SslKeyLogFile != nullptr) {
                     if (QUIC_FAILED(HttpConn->SetSslKeyLogFile(This->SslKeyLogFile))) {
                         printf("%s:%d %s\n", __FILE__, __LINE__, "Setting SslKeyLogFile on Connection Failed! Did you build with -SslKeyLogFileSupport?");
