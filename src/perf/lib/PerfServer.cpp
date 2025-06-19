@@ -108,6 +108,8 @@ PerfServer::Init(
         DelayWorkers = new (std::nothrow) DelayWorker[ProcCount];
         for (uint16_t i = 0; i < ProcCount; ++i) {
             if (!DelayWorkers[i].Initialize(this, i)) {
+                delete[] DelayWorkers;
+                DelayWorkers = nullptr;
                 WriteOutput("Failed to init delay workers.\n");
                 return QUIC_STATUS_INTERNAL_ERROR;
             }
