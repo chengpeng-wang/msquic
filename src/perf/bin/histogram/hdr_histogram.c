@@ -430,7 +430,7 @@ bool hdr_record_values(struct hdr_histogram* h, int64_t value, int64_t count)
 {
     int32_t counts_index;
 
-    if (value < 0)
+    if (value < 0 || h == nullptr)
     {
         return false;
     }
