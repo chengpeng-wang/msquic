@@ -325,7 +325,7 @@ main(
         }
     }
 
-    if (TryGetValue(argc, argv, "cipher", &CipherSuite)) {
+    if (TryGetValue(argc, argv, "cipher", &CipherSuite) && SelfSignedCredConfig) {
         SelfSignedCredConfig->Flags |= QUIC_CREDENTIAL_FLAG_SET_ALLOWED_CIPHER_SUITES;
         SelfSignedCredConfig->AllowedCipherSuites = (QUIC_ALLOWED_CIPHER_SUITE_FLAGS)CipherSuite;
     }
