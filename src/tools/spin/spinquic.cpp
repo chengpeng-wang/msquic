@@ -537,6 +537,7 @@ QUIC_STATUS QUIC_API SpinQuicServerHandleListenerEvent(HQUIC /* Listener */, voi
         if (ctx == nullptr) {
             return QUIC_STATUS_OUT_OF_MEMORY;
         }
+        MsQuic.ConnectionSetContext(Event->NEW_CONNECTION.Connection, ctx);
         {
             std::lock_guard<std::mutex> Lock(Connections);
             Connections.push_back(Event->NEW_CONNECTION.Connection);
