@@ -1,0 +1,6 @@
+{"event":"phase_start","phase":"phase2-manual-spec","lossy":true,"source_trajectory":"phase2-manual-spec.jsonl","project":"msquic"}
+{"event":"fresh_pass_boundary","phase":"phase2-manual-spec","detail":"Started a new manual reverse-engineering pass from documentation, API docs, and public headers without reading generated manual or test spec artifacts."}
+{"event":"tool_use","phase":"phase2-manual-spec","detail":"Inspected docs/API.md, Settings.md, Deployment.md, Streams.md, TLS.md, Execution.md, Versions.md, XDP.md, and public API declarations in src/inc/msquic.h."}
+{"event":"decision","phase":"phase2-manual-spec","detail":"Modeled requirements around library lifecycle, object handles, callback-driven execution, listeners, connections, streams, datagrams, TLS, settings, version negotiation, deployment, and platform extensions."}
+{"event":"artifact_written","phase":"phase2-manual-spec","path":".reverse-spec/manual-spec/requirements.md"}
+{"event":"phase_status","phase":"phase2-manual-spec","status":"success","detail":"Manual product requirements were generated from codebase documentation and public API behavior."}

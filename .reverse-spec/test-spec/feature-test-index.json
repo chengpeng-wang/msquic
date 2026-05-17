@@ -1,0 +1,151 @@
+{
+  "features": [
+    {
+      "id": "feature_001",
+      "name": "Public API Validation",
+      "description": "Invalid API inputs and unsupported operations fail deterministically without corrupting state.",
+      "test_cases": [
+        {"test_id": "ParameterValidation.ValidateApi", "test_path": "src/test/lib/ApiTest.cpp::QuicTestValidateApi", "test_description": "Validates library open/close and global TLS provider parameter validation."},
+        {"test_id": "ParameterValidation.ValidateConfiguration", "test_path": "src/test/lib/ApiTest.cpp::QuicTestValidateConfiguration", "test_description": "Validates configuration inputs including ALPN lengths and settings."},
+        {"test_id": "ParameterValidation/WithBool.ValidateStream", "test_path": "src/test/lib/ApiTest.cpp::QuicTestValidateStream", "test_description": "Validates stream API calls before and after connection setup."}
+      ]
+    },
+    {
+      "id": "feature_002",
+      "name": "Registration and Configuration Lifecycle",
+      "description": "Applications can open/close registrations, create configurations, and load credentials.",
+      "test_cases": [
+        {"test_id": "Basic.RegistrationOpenClose", "test_path": "src/test/lib/BasicTest.cpp::QuicTestRegistrationOpenClose", "test_description": "Covers registration open and close behavior."},
+        {"test_id": "ParameterValidation/WithValidateTlsConfigArgs.ValidateTlsConfig", "test_path": "src/test/lib/ApiTest.cpp::QuicTestValidateTlsConfig", "test_description": "Covers valid TLS credential configuration variants."}
+      ]
+    },
+    {
+      "id": "feature_003",
+      "name": "Listener Binding and ALPN Routing",
+      "description": "Listeners bind addresses, advertise ALPNs, and reject conflicting ALPN bindings.",
+      "test_cases": [
+        {"test_id": "Basic.StartTwoListenersSameALPN", "test_path": "src/test/lib/BasicTest.cpp::QuicTestStartTwoListenersSameALPN", "test_description": "Ensures ALPN conflicts are rejected."},
+        {"test_id": "Basic/WithFamilyArgs.StartListenerExplicit", "test_path": "src/test/lib/BasicTest.cpp::QuicTestStartListenerExplicit", "test_description": "Starts listeners on explicit IPv4/IPv6 addresses."}
+      ]
+    },
+    {
+      "id": "feature_004",
+      "name": "Connection Creation, Binding, and Parameters",
+      "description": "Connections expose lifecycle, binding, address, statistics, scheduling, datagram, DSCP, and TLS parameters.",
+      "test_cases": [
+        {"test_id": "Basic.CreateConnection", "test_path": "src/test/lib/BasicTest.cpp::QuicTestCreateConnection", "test_description": "Creates a client connection handle."},
+        {"test_id": "ParameterValidation.ValidateConnectionParam", "test_path": "src/test/lib/ApiTest.cpp::QuicTestConnectionParam", "test_description": "Validates connection parameter get/set behavior."}
+      ]
+    },
+    {
+      "id": "feature_005",
+      "name": "Handshake, ALPN, Certificates, and Resumption",
+      "description": "Connections complete or fail handshakes correctly across ALPN, certificate, retry, and resumption scenarios.",
+      "test_cases": [
+        {"test_id": "Handshake/WithHandshakeArgs1.Connect", "test_path": "src/test/lib/HandshakeTest.cpp::QuicTestConnect", "test_description": "Covers IPv4/IPv6 handshakes with retry, ALPN, grease, and client initial variants."},
+        {"test_id": "Handshake/WithHandshakeArgs1.Resume", "test_path": "src/test/lib/HandshakeTest.cpp::QuicTestConnect", "test_description": "Covers resumption ticket use."},
+        {"test_id": "TlsTest.Handshake", "test_path": "src/platform/unittest/TlsTest.cpp", "test_description": "Validates TLS handshake behavior."}
+      ]
+    },
+    {
+      "id": "feature_006",
+      "name": "QUIC Version Negotiation",
+      "description": "Version settings and version negotiation extension behavior are honored.",
+      "test_cases": [
+        {"test_id": "Basic/WithFamilyArgs.VersionNegotiation", "test_path": "src/test/lib/HandshakeTest.cpp", "test_description": "Exercises version negotiation scenarios."},
+        {"test_id": "VersionNegExtTest/WithType.EncodeDecodeVersionInfo", "test_path": "src/core/unittest/VersionNegExtTest.cpp", "test_description": "Encodes and decodes version negotiation extension information."}
+      ]
+    },
+    {
+      "id": "feature_007",
+      "name": "Stream Data Transfer and Flow Control",
+      "description": "Reliable streams transfer data across stream directions, scheduling modes, 0-RTT, and shutdown cases.",
+      "test_cases": [
+        {"test_id": "Data.Ping", "test_path": "src/test/lib/DataTest.cpp", "test_description": "Exercises multi-connection and multi-stream ping-style data transfer."},
+        {"test_id": "Misc.StreamBlockUnblockBidiConnFlowControl", "test_path": "src/test/lib/DataTest.cpp", "test_description": "Validates bidirectional stream flow-control block/unblock behavior."}
+      ]
+    },
+    {
+      "id": "feature_008",
+      "name": "Stream Events and Ownership",
+      "description": "Connection and stream event sequences are delivered in valid order and peer-created objects are accepted by callback.",
+      "test_cases": [
+        {"test_id": "ParameterValidation/WithValidateConnectionEventArgs.ValidateConnectionEvents", "test_path": "src/test/lib/EventTest.cpp::QuicTestValidateConnectionEvents", "test_description": "Validates connection event sequences."},
+        {"test_id": "ParameterValidation/WithValidateStreamEventArgs.ValidateStreamEvents", "test_path": "src/test/lib/EventTest.cpp::QuicTestValidateStreamEvents", "test_description": "Validates stream event sequences."},
+        {"test_id": "OwnershipValidation.ConnectionCloseBeforeStreamClose", "test_path": "src/test/lib/ApiTest.cpp", "test_description": "Validates ownership behavior across connection and stream close."}
+      ]
+    },
+    {
+      "id": "feature_009",
+      "name": "Receive Buffer Modes",
+      "description": "Receive buffers correctly handle modes, gaps, drains, app-owned buffers, and reset.",
+      "test_cases": [
+        {"test_id": "RecvBufferTest/WithMode.WriteGap", "test_path": "src/core/unittest/RecvBufferTest.cpp", "test_description": "Validates receiving with gaps across modes."},
+        {"test_id": "AppOwnedBuffersTest.OutOfBuffers", "test_path": "src/core/unittest/RecvBufferTest.cpp", "test_description": "Validates app-owned buffer exhaustion handling."}
+      ]
+    },
+    {
+      "id": "feature_010",
+      "name": "Datagram Negotiation and Delivery",
+      "description": "Datagrams are sent, received, or canceled according to negotiated capability.",
+      "test_cases": [
+        {"test_id": "Misc/WithDatagramNegotiationArgs.DatagramNegotiation", "test_path": "src/test/lib/DatagramTest.cpp::QuicTestDatagramNegotiation", "test_description": "Validates datagram negotiation enabled and disabled cases."},
+        {"test_id": "Basic/WithFamilyArgs.DatagramSend", "test_path": "src/test/lib/DatagramTest.cpp::QuicTestDatagramSend", "test_description": "Validates datagram send and receive."}
+      ]
+    },
+    {
+      "id": "feature_011",
+      "name": "QUIC Frame and VarInt Encoding",
+      "description": "QUIC frame and varint encoding/decoding accepts valid data and rejects malformed data.",
+      "test_cases": [
+        {"test_id": "FrameTest/AckFrameTest.AckFrameEncodeDecode", "test_path": "src/core/unittest/FrameTest.cpp", "test_description": "Round-trips ACK frames."},
+        {"test_id": "VarIntTest.RandomEncodeDecode", "test_path": "src/core/unittest/VarIntTest.cpp", "test_description": "Randomized varint encode/decode round trip."}
+      ]
+    },
+    {
+      "id": "feature_012",
+      "name": "Packet Number Ranges and ACK Tracking",
+      "description": "Range and ACK tracking logic merges, searches, limits, and detects reordering.",
+      "test_cases": [
+        {"test_id": "RangeTest.AddThreeMerge", "test_path": "src/core/unittest/RangeTest.cpp", "test_description": "Merges separated adjacent values into one range."},
+        {"test_id": "FrameTest.TestQuicAckTrackerDidHitReorderingThreshold", "test_path": "src/core/unittest/FrameTest.cpp", "test_description": "Checks reordering threshold detection."}
+      ]
+    },
+    {
+      "id": "feature_013",
+      "name": "Congestion Control and Pacing",
+      "description": "CUBIC and BBR respond to ACK/loss/ECN, recovery, pacing, app-limited, and statistics events.",
+      "test_cases": [
+        {"test_id": "CubicTest.OnDataLost_WindowReduction", "test_path": "src/core/unittest/CubicTest.cpp", "test_description": "Validates CUBIC window reduction on loss."},
+        {"test_id": "BbrTest_DeepTest.OnDataAcknowledged_StartupToDrain", "test_path": "src/core/unittest/BbrTest.cpp", "test_description": "Validates BBR startup to drain transition."}
+      ]
+    },
+    {
+      "id": "feature_014",
+      "name": "Platform Datapath and Address Utilities",
+      "description": "Platform datapath supports UDP/TCP, address parsing, DSCP/ECN, socket sharing, and event queues.",
+      "test_cases": [
+        {"test_id": "DataPathTest/DataPathTest.UdpData", "test_path": "src/platform/unittest/DataPathTest.cpp", "test_description": "Validates UDP data transfer over IPv4/IPv6."},
+        {"test_id": "PlatformTest.QuicAddrParsing", "test_path": "src/platform/unittest/PlatformTest.cpp", "test_description": "Validates address parsing behavior."}
+      ]
+    },
+    {
+      "id": "feature_015",
+      "name": "TLS and Cryptographic Primitives",
+      "description": "TLS and crypto satisfy known vectors, handshake, certificate, cipher, resumption, and key-update behavior.",
+      "test_cases": [
+        {"test_id": "CryptTest.WellKnownClientInitialv1", "test_path": "src/platform/unittest/CryptTest.cpp", "test_description": "Validates QUIC v1 initial key derivation and packet protection vector."},
+        {"test_id": "TlsTest.HandshakeResumption", "test_path": "src/platform/unittest/TlsTest.cpp", "test_description": "Validates TLS resumption."}
+      ]
+    },
+    {
+      "id": "feature_016",
+      "name": "Diagnostics, Statistics, and Storage",
+      "description": "Diagnostics expose counters, statistics, network events, persistent settings, metadata, and compatible sizes.",
+      "test_cases": [
+        {"test_id": "ParameterValidation.ValidateGetPerfCounters", "test_path": "src/test/lib/ApiTest.cpp", "test_description": "Validates performance counter query."},
+        {"test_id": "SettingsTest.QuicSettingsLoad_SetsFieldsFromStorage", "test_path": "src/core/unittest/SettingsTest.cpp", "test_description": "Validates settings loaded from storage."}
+      ]
+    }
+  ]
+}

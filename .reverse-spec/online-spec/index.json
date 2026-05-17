@@ -1,0 +1,82 @@
+{
+  "project": "msquic",
+  "standards": [
+    {
+      "id": "rfc8999",
+      "title": "Version-Independent Properties of QUIC",
+      "status": "RFC",
+      "source": "https://www.rfc-editor.org/rfc/rfc8999",
+      "artifact": "rfc-8999-quic-invariants.md"
+    },
+    {
+      "id": "rfc9000",
+      "title": "QUIC: A UDP-Based Multiplexed and Secure Transport",
+      "status": "RFC",
+      "source": "https://www.rfc-editor.org/rfc/rfc9000.html",
+      "artifact": "rfc-9000-quic-transport.md"
+    },
+    {
+      "id": "rfc9001",
+      "title": "Using TLS to Secure QUIC",
+      "status": "RFC",
+      "source": "https://www.rfc-editor.org/rfc/rfc9001.html",
+      "artifact": "rfc-9001-quic-tls.md"
+    },
+    {
+      "id": "rfc9002",
+      "title": "QUIC Loss Detection and Congestion Control",
+      "status": "RFC",
+      "source": "https://www.rfc-editor.org/rfc/rfc9002",
+      "artifact": "rfc-9002-loss-congestion.md"
+    },
+    {
+      "id": "rfc9221",
+      "title": "An Unreliable Datagram Extension to QUIC",
+      "status": "RFC",
+      "source": "https://www.rfc-editor.org/rfc/rfc9221",
+      "artifact": "rfc-9221-datagrams.md"
+    },
+    {
+      "id": "rfc9287",
+      "title": "Greasing the QUIC Bit",
+      "status": "RFC",
+      "source": "https://www.rfc-editor.org/rfc/rfc9287.html",
+      "artifact": "rfc-9287-grease-quic-bit.md"
+    },
+    {
+      "id": "rfc9368",
+      "title": "Compatible Version Negotiation for QUIC",
+      "status": "RFC",
+      "source": "https://www.rfc-editor.org/rfc/rfc9368.html",
+      "artifact": "rfc-9368-compatible-version-negotiation.md"
+    },
+    {
+      "id": "rfc9369",
+      "title": "QUIC Version 2",
+      "status": "RFC",
+      "source": "https://www.rfc-editor.org/rfc/rfc9369.html",
+      "artifact": "rfc-9369-quic-v2.md"
+    },
+    {
+      "id": "draft-ietf-quic-load-balancers",
+      "title": "QUIC-LB: Generating Routable QUIC Connection IDs",
+      "status": "IETF Internet-Draft",
+      "source": "https://datatracker.ietf.org/doc/draft-ietf-quic-load-balancers/",
+      "artifact": "draft-quic-extensions.md"
+    },
+    {
+      "id": "draft-ietf-quic-ack-frequency",
+      "title": "QUIC Acknowledgment Frequency",
+      "status": "IETF Internet-Draft",
+      "source": "https://datatracker.ietf.org/doc/draft-ietf-quic-ack-frequency/",
+      "artifact": "draft-quic-extensions.md"
+    },
+    {
+      "id": "draft-ietf-quic-reliable-stream-reset",
+      "title": "Reliable Stream Reset",
+      "status": "IETF Internet-Draft",
+      "source": "https://datatracker.ietf.org/doc/draft-ietf-quic-reliable-stream-reset/",
+      "artifact": "draft-quic-extensions.md"
+    }
+  ]
+}

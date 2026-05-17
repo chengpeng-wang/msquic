@@ -1,0 +1,24 @@
+{
+  "tests": [
+    {"test_id": "ParameterValidation.ValidateApi", "test_path": "src/test/lib/ApiTest.cpp::QuicTestValidateApi", "feature_ids": ["feature_001", "feature_016"], "requirement": "The public API must validate library and global parameter calls."},
+    {"test_id": "ParameterValidation.ValidateConfiguration", "test_path": "src/test/lib/ApiTest.cpp::QuicTestValidateConfiguration", "feature_ids": ["feature_001", "feature_002"], "requirement": "Configuration creation must validate ALPN and settings input."},
+    {"test_id": "Basic.RegistrationOpenClose", "test_path": "src/test/lib/BasicTest.cpp::QuicTestRegistrationOpenClose", "feature_ids": ["feature_002"], "requirement": "Registrations must open and close successfully."},
+    {"test_id": "Basic.StartTwoListenersSameALPN", "test_path": "src/test/lib/BasicTest.cpp::QuicTestStartTwoListenersSameALPN", "feature_ids": ["feature_003"], "requirement": "Listeners sharing a socket must reject overlapping ALPN bindings."},
+    {"test_id": "ParameterValidation.ValidateConnectionParam", "test_path": "src/test/lib/ApiTest.cpp::QuicTestConnectionParam", "feature_ids": ["feature_004", "feature_016"], "requirement": "Connection parameters must implement documented get/set behavior."},
+    {"test_id": "Handshake/WithHandshakeArgs1.Connect", "test_path": "src/test/lib/HandshakeTest.cpp::QuicTestConnect", "feature_ids": ["feature_005", "feature_006"], "requirement": "Client/server handshakes must complete across configured transport variants."},
+    {"test_id": "Handshake/WithHandshakeArgs1.Resume", "test_path": "src/test/lib/HandshakeTest.cpp::QuicTestConnect", "feature_ids": ["feature_005", "feature_015"], "requirement": "Session resumption tickets must allow resumed connections when accepted."},
+    {"test_id": "VersionNegExtTest/WithType.EncodeDecodeVersionInfo", "test_path": "src/core/unittest/VersionNegExtTest.cpp", "feature_ids": ["feature_006"], "requirement": "Version negotiation extension information must encode and decode correctly."},
+    {"test_id": "Data.Ping", "test_path": "src/test/lib/DataTest.cpp", "feature_ids": ["feature_007", "feature_008"], "requirement": "Streams must transfer data and report completion under varied modes."},
+    {"test_id": "ParameterValidation/WithValidateStreamEventArgs.ValidateStreamEvents", "test_path": "src/test/lib/EventTest.cpp::QuicTestValidateStreamEvents", "feature_ids": ["feature_008"], "requirement": "Stream event sequences must match expected lifecycle behavior."},
+    {"test_id": "RecvBufferTest/WithMode.WriteGap", "test_path": "src/core/unittest/RecvBufferTest.cpp", "feature_ids": ["feature_009"], "requirement": "Receive buffers must preserve gapped data until contiguous delivery is possible."},
+    {"test_id": "Misc/WithDatagramNegotiationArgs.DatagramNegotiation", "test_path": "src/test/lib/DatagramTest.cpp::QuicTestDatagramNegotiation", "feature_ids": ["feature_010"], "requirement": "Datagram sends must follow peer receive support negotiation."},
+    {"test_id": "FrameTest/AckFrameTest.AckFrameEncodeDecode", "test_path": "src/core/unittest/FrameTest.cpp", "feature_ids": ["feature_011", "feature_012"], "requirement": "ACK frames must round trip packet number ranges and ECN counters."},
+    {"test_id": "VarIntTest.RandomEncodeDecode", "test_path": "src/core/unittest/VarIntTest.cpp", "feature_ids": ["feature_011"], "requirement": "Variable-length integers must encode and decode correctly."},
+    {"test_id": "RangeTest.AddThreeMerge", "test_path": "src/core/unittest/RangeTest.cpp", "feature_ids": ["feature_012"], "requirement": "Adjacent packet number ranges must merge correctly."},
+    {"test_id": "CubicTest.OnDataLost_WindowReduction", "test_path": "src/core/unittest/CubicTest.cpp", "feature_ids": ["feature_013"], "requirement": "CUBIC must reduce congestion window on loss."},
+    {"test_id": "BbrTest_DeepTest.OnDataAcknowledged_StartupToDrain", "test_path": "src/core/unittest/BbrTest.cpp", "feature_ids": ["feature_013"], "requirement": "BBR must transition from startup to drain based on bandwidth detection."},
+    {"test_id": "DataPathTest/DataPathTest.UdpData", "test_path": "src/platform/unittest/DataPathTest.cpp", "feature_ids": ["feature_014"], "requirement": "The platform datapath must transfer UDP payloads over IPv4 and IPv6."},
+    {"test_id": "CryptTest.WellKnownClientInitialv1", "test_path": "src/platform/unittest/CryptTest.cpp", "feature_ids": ["feature_015"], "requirement": "QUIC v1 initial packet key derivation must match known vectors."},
+    {"test_id": "SettingsTest.QuicSettingsLoad_SetsFieldsFromStorage", "test_path": "src/core/unittest/SettingsTest.cpp", "feature_ids": ["feature_016"], "requirement": "Settings must load explicitly stored fields from platform storage."}
+  ]
+}

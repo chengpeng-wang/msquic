@@ -1,0 +1,10 @@
+{"event":"phase_start","phase":"phase3-test-spec","lossy":true,"source_trajectory":"phase3-test-spec.jsonl","project":"msquic"}
+{"event":"fresh_pass_boundary","phase":"phase3-test-spec","detail":"Started a new test-guided pass using test sources and discovered test names only, without reading manual-spec artifacts."}
+{"event":"tool_use","phase":"phase3-test-spec","detail":"Inspected API, basic, handshake, datagram, data, event, frame, range, TLS, congestion-control, datapath, and crypto unit/integration test files."}
+{"event":"decision","phase":"phase3-test-spec","detail":"Grouped observed test coverage into 16 product features spanning API validation, lifecycle, listeners, connections, handshakes, versions, streams, events, buffers, datagrams, frames, ranges, congestion control, datapath, TLS/crypto, and diagnostics."}
+{"event":"artifact_written","phase":"phase3-test-spec","path":".reverse-spec/test-spec/product-spec.md"}
+{"event":"artifact_written","phase":"phase3-test-spec","path":".reverse-spec/test-spec/annotated-spec.md"}
+{"event":"artifact_written","phase":"phase3-test-spec","path":".reverse-spec/test-spec/feature-test-index.json"}
+{"event":"artifact_written","phase":"phase3-test-spec","path":".reverse-spec/test-spec/test-feature-index.json"}
+{"event":"verification","phase":"phase3-test-spec","detail":"Validated both JSON indexes with python3 -m json.tool."}
+{"event":"phase_status","phase":"phase3-test-spec","status":"success","detail":"Test-guided specifications and bidirectional feature/test indexes were generated."}

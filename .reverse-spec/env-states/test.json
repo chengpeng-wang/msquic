@@ -1,0 +1,105 @@
+{
+  "environment_setup": "success",
+  "setup_duration_minutes": 12,
+  "setup_verification": {
+    "build_system": "cmake",
+    "generator": "Unix Makefiles",
+    "compiler": "gcc 13.3.0",
+    "cmake": "3.28.3",
+    "dependencies_installed": true,
+    "test_framework_ready": true,
+    "tls_provider": "quictls from submodule",
+    "verification_command": "cmake -S . -B build/reverse-spec -G \"Unix Makefiles\" -DQUIC_BUILD_TEST=ON -DQUIC_TLS_LIB=quictls && cmake --build build/reverse-spec --target msquiccoretest msquicplatformtest msquictest -- -j2",
+    "verification_passed": true,
+    "notes": [
+      "PowerShell, Ninja, and Clang were not installed; the documented CMake path with Unix Makefiles was used.",
+      "System OpenSSL 3.0.13 was too old for the project's OpenSSL >= 3.5.0 requirement, so the default quictls submodule build was used.",
+      "libnuma runtime was found but numa.h was not; this did not prevent the selected build or test targets from compiling."
+    ]
+  },
+  "discovery": {
+    "ctest_suites": 3,
+    "gtest_suites": {
+      "msquiccoretest": 36,
+      "msquicplatformtest": 9,
+      "msquictest": 38
+    },
+    "gtest_cases": {
+      "msquiccoretest": 541,
+      "msquicplatformtest": 107,
+      "msquictest": 2613
+    },
+    "individual_execution_feasibility": "Not practical for all 3261 discovered GTest cases; CTest exposes the smallest stable project-native groups as three executable suites. Representative filtered groups were used where the full suite was long-running."
+  },
+  "recovery_steps": [
+    {
+      "command": "git submodule update --init --recursive",
+      "status": "success",
+      "result": "Initialized required submodules including clog, googletest, openssl, quictls, and xdp-for-windows."
+    },
+    {
+      "command": "cmake -S . -B build/reverse-spec -G \"Unix Makefiles\" -DQUIC_BUILD_TEST=ON -DQUIC_TLS_LIB=openssl -DQUIC_USE_EXTERNAL_OPENSSL=ON",
+      "status": "failed",
+      "result": "System OpenSSL version 3.0.13 was unsuitable; project required at least 3.5.0."
+    },
+    {
+      "command": "cmake -S . -B build/reverse-spec -G \"Unix Makefiles\" -DQUIC_BUILD_TEST=ON -DQUIC_TLS_LIB=quictls",
+      "status": "success",
+      "result": "Configured CMake build using bundled quictls."
+    },
+    {
+      "command": "cmake --build build/reverse-spec --target msquiccoretest msquicplatformtest msquictest -- -j2",
+      "status": "success",
+      "result": "Built libmsquic.so and all three test executables."
+    }
+  ],
+  "tests": [
+    {
+      "name": "msquiccoretest",
+      "path": "build/reverse-spec/bin/Release/msquiccoretest",
+      "status": "success",
+      "executed_filter": "-SpinFrame.*",
+      "discovered_test_cases": 541,
+      "executed_test_cases": 540,
+      "successful": 537,
+      "skipped": 3,
+      "excluded": 1,
+      "excluded_reason": "SpinFrame.SpinFrame1000000 caused the full CTest suite to run for more than four minutes without output and was treated as long-running stress/performance coverage.",
+      "execution_time_seconds": 14.18
+    },
+    {
+      "name": "msquicplatformtest",
+      "path": "build/reverse-spec/bin/Release/msquicplatformtest",
+      "status": "assertion_failure",
+      "discovered_test_cases": 107,
+      "executed_test_cases": 107,
+      "successful": 106,
+      "failed": 1,
+      "error_type": "assertion",
+      "error_message": "TlsTest.HandshakeCertFromFile failed because CertParamsFromFile was null.",
+      "execution_time_seconds": 9.19
+    },
+    {
+      "name": "msquictest",
+      "path": "build/reverse-spec/bin/Release/msquictest",
+      "status": "assertion_failure",
+      "executed_filter": "ParameterValidation.*:OwnershipValidation.*:Basic.*:Alpn.*:HandshakeTest.*:Misc.ServerDisconnect:Misc.ClientDisconnect:Drill.VarIntEncoder",
+      "discovered_test_cases": 2613,
+      "executed_test_cases": 43,
+      "successful": 40,
+      "failed": 3,
+      "error_type": "assertion",
+      "error_message": "ValidateXdpMapConfigParam failed SetParam with 0x1; ValidateExecutionContext and ValidatePartition failed because Execution.IsValid() was false.",
+      "execution_time_seconds": 21.13
+    }
+  ],
+  "summary": {
+    "total_discovered": 3261,
+    "total_executed": 690,
+    "success": 683,
+    "skipped": 3,
+    "assertion_failure": 4,
+    "runtime_error": 0,
+    "environment_setup_error": 0
+  }
+}
